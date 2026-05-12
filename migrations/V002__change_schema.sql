@@ -18,6 +18,6 @@ SET date_created = (
     WHERE od.order_id = o.id
 );
 
--- удаляем ненужные таблицы-дублт
-DROP TABLE product_info;
-DROP TABLE orders_date;
+-- -- удаляем ненужные таблицы-дублт
+-- DROP TABLE product_info;
+-- DROP TABLE orders_date;
