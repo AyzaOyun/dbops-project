@@ -19,5 +19,5 @@ JOIN orders o ON op.order_id = o.id
 WHERE o.date_created >= CURRENT_DATE - INTERVAL '7 days';
 
 -- сравнение выполнения запроса до и после создания индексов
--- время выполнения уменьшилось
+--время выполнения уменьшилось
  
