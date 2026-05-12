@@ -17,9 +17,9 @@ jobs:
     #     ping -c 3 ${{ secrets.DB_HOST }}
     #     nc -zv ${{ secrets.DB_HOST }} ${{ secrets.DB_PORT }}
     
-    - name: Test network connectivity
-      run: |
-        curl -v telnet://${{ secrets.DB_HOST }}:${{ secrets.DB_PORT }}
+    # - name: Test network connectivity
+    #   run: |
+    #     curl -v telnet://${{ secrets.DB_HOST }}:${{ secrets.DB_PORT }}
     #### Добавьте шаг с Flyway-миграциями
     - name: Install Flyway
       run: |
