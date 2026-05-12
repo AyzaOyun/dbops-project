@@ -10,6 +10,11 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+
+    - name: Debug connection
+      run: |
+        ping -c 3 ${{ secrets.DB_HOST }}
+        nc -zv ${{ secrets.DB_HOST }} ${{ secrets.DB_PORT }}
     #### Добавьте шаг с Flyway-миграциями
     - name: Install Flyway
       run: |
