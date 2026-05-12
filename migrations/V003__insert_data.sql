@@ -8,6 +8,6 @@ INSERT INTO orders (id, status, date_created)
 SELECT o.id, o.status, od.date_created
 FROM orders o JOIN orders_date od ON o.id = od.order_id;
 
--- удаляем ненужные таблицы-дублт
+-- удаляем ненужные таблицы-дубли
 DROP TABLE product_info;
 DROP TABLE orders_date;
