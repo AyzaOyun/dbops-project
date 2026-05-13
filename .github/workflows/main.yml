@@ -17,12 +17,12 @@ jobs:
         for i in {1..30}; do
           nc -zv ${{ secrets.DB_HOST }} ${{ secrets.DB_PORT }} && break || sleep 2
         done
-    #### Добавьте шаг с Flyway-миграциями
-    # - name: Install Flyway
-    #   run: |
-    #     curl -L -o flyway.tar.gz https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/11.1.0/flyway-commandline-11.1.0-linux-x64.tar.gz
-    #     tar -xzf flyway.tar.gz
-    #     sudo ln -s $(pwd)/flyway-11.1.0/flyway /usr/local/bin/flyway
+    ### Добавьте шаг с Flyway-миграциями
+    - name: Install Flyway
+      run: |
+        curl -L -o flyway.tar.gz https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/11.1.0/flyway-commandline-11.1.0-linux-x64.tar.gz
+        tar -xzf flyway.tar.gz
+        sudo ln -s $(pwd)/flyway-11.1.0/flyway /usr/local/bin/flyway
     - name: Run Flyway migrations
       env:
         FLYWAY_URL: jdbc:postgresql://${{ secrets.DB_HOST }}:${{ secrets.DB_PORT }}/${{ secrets.DB_NAME }}?connectTimeout=60&socketTimeout=60
