@@ -1,15 +1,33 @@
--- вставляем продукты с ценами
-INSERT INTO product (id, name, picture_url, price)
-SELECT p.id, p.name, p.picture_url, pi.price
-FROM product p JOIN product_info pi ON p.id = pi.product_id;
+INSERT INTO product (id, name, picture_url, price) VALUES
+(1, 'Сливочная', 'https://res.cloudinary.com/sugrobov/image/upload/v1623323635/repos/sausages/6.jpg', 320.00);
+
+INSERT INTO product (id, name, picture_url, price) VALUES
+(2, 'Особая', 'https://res.cloudinary.com/sugrobov/image/upload/v1623323635/repos/sausages/5.jpg', 179.00);
+
+INSERT INTO product (id, name, picture_url, price) VALUES
+(3, 'Молочная', 'https://res.cloudinary.com/sugrobov/image/upload/v1623323635/repos/sausages/4.jpg', 225.00);
+
+INSERT INTO product (id, name, picture_url, price) VALUES
+(4, 'Нюренбергская', 'https://res.cloudinary.com/sugrobov/image/upload/v1623323635/repos/sausages/3.jpg', 315.00);
+
+INSERT INTO product (id, name, picture_url, price) VALUES
+(5, 'Мюнхенская', 'https://res.cloudinary.com/sugrobov/image/upload/v1623323635/repos/sausages/2.jpg', 330.00);
+
+INSERT INTO product (id, name, picture_url, price) VALUES
+(6, 'Русская', 'https://res.cloudinary.com/sugrobov/image/upload/v1623323635/repos/sausages/1.jpg', 189.00);
 
 
--- вставляем заказы с датами
 INSERT INTO orders (id, status, date_created)
-SELECT o.id, o.status, od.date_created
-FROM orders o JOIN orders_date od ON o.id = od.order_id;
+SELECT
+    i,
+    (array['pending', 'shipped', 'cancelled'])[floor(random() * 3 + 1)],
+    DATE(NOW() - (random() * (NOW() + interval '90 days' - NOW())))
+FROM generate_series(1, 10000000) s(i);
 
 
--- удаляем ненужные таблицы-дубли
-DROP TABLE product_info;
-DROP TABLE orders_date;
+INSERT INTO order_product (quantity, order_id, product_id)
+SELECT
+    floor(1 + random() * 50)::int,
+    i,
+    1 + floor(random() * 6)::int % 6
+FROM generate_series(1, 10000000) s(i);
