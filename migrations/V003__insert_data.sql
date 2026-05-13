@@ -29,7 +29,7 @@ SELECT
     i,
     (array['pending', 'shipped', 'cancelled'])[floor(random() * 3 + 1)],
     DATE(NOW() - (random() * (NOW() + interval '90 days' - NOW())))
-FROM generate_series(1, 10000000) s(i);
+FROM generate_series(1, 100000) s(i);
 
 
 
@@ -39,4 +39,4 @@ SELECT
     floor(1 + random() * 50)::int,
     i,
     1 + floor(random() * 6)::int % 6
-FROM generate_series(1, 10000000) s(i);
+FROM generate_series(1, 100000) s(i);
